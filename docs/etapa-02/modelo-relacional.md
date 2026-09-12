@@ -1,9 +1,7 @@
-## 2. Modelo Relacional (Lógico)
-A continuación se presenta el pasaje a tablas (Esquema Relacional):
+# Modelo Relacional
 
-![Modelo Relacional](relacional.png)
+A continuación se detalla el esquema relacional obtenido a partir del pasaje a tablas:
 
-### Detalle del Esquema Relacional en Texto:
 * **PERSONA** (ID_Persona, Nombre, Apellido, DNI, Mail)
 * **CLIENTE** (ID_Cliente, fk_PERSONA)
 * **TECNICO** (ID_Tecnico, fk_PERSONA, fk_EMPRESA)
