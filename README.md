@@ -11,8 +11,8 @@
 * Aiello Mariano
 * Blanco Nicolas Gustavo
 * Cardozo Candia Santiago
-* Fava Gabriel Andres
-* Gerez Luciano
+* Fava Gabriel 
+* Gerez Luciano Andres
 
 ## 📋 Caso de Estudio
 **Empresa de Venta y Servicio de Electrónica:** Sistema de información para la gestión unificada del registro de clientes, flujo de stock de insumos/productos suministrados por proveedores, y administración de órdenes de reparación técnicas.
