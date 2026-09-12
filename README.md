@@ -18,11 +18,49 @@
 **Empresa de Venta y Servicio de Electrónica:** Sistema de información para la gestión unificada del registro de clientes, flujo de stock de insumos/productos suministrados por proveedores, y administración de órdenes de reparación técnicas.
 
 ## 📂 Estructura del Repositorio
-El proyecto está organizado siguiendo las normativas de la cátedra:
-
-* 📁 `docs/`: Contiene la documentación respaldatoria dividida por etapas (01 a 05).
-  * Incluye descripciones, reglas de negocio, modelos (DER y Relacional), diccionarios de datos y manifiestos de contribución.
-* 📁 `sql/`: Contiene los scripts de la base de datos.
-  * `ddl/`: Scripts de creación de tablas y estructuras.
-  * `dml/`: Scripts de inserción de datos de prueba.
-  * `consultas/`: Scripts de vistas e informes.
+El proyecto está organizado de la siguiente forma:
+proyecto-bd1-equipo-02/
+├── docs/
+│   ├── etapa-01/
+│   │   ├── descripcion-caso.md
+│   │   ├── alcance.md
+│   │   ├── reglas-negocio.md
+│   │   └── decisiones-diseno.md
+│   ├── etapa-02/
+│   │   ├── der/
+│   │   │   └── der.png
+│   │   ├── modelo-relacional.md
+│   │   ├── normalizacion.md
+│   │   └── decisiones-diseno.md
+│   ├── etapa-03/
+│   │   ├── implementacion.md
+│   │   ├── restricciones-integridad.md
+│   │   └── pruebas-validacion.md
+│   ├── etapa-04/
+│   │   ├── casos-uso.md
+│   │   ├── comprobante-venta.md
+│   │   ├── informe-ventas.md
+│   │   └── consulta-avanzada.md
+│   └── etapa-05/
+│       ├── procedimientos-funciones.md
+│       ├── transacciones.md
+│       ├── triggers-auditoria.md
+│       ├── seguridad.md
+│       └── indices-optimizacion.md
+├── sql/
+│   ├── ddl/
+│   │   └── crear_bd.sql
+│   ├── dml/
+│   │   └── datos_prueba.sql
+│   ├── consultas/
+│   │   ├── comprobante_venta.sql
+│   │   ├── informe_ventas.sql
+│   │   └── consulta_avanzada.sql
+│   └── tecnico/
+│       ├── procedimientos/
+│       ├── funciones/
+│       ├── transacciones/
+│       ├── triggers/
+│       ├── seguridad/
+│       └── indices/
+└── README.md
