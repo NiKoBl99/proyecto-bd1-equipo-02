@@ -19,6 +19,7 @@
 
 ## 📂 Estructura del Repositorio
 El proyecto está organizado de la siguiente forma:
+```text
 proyecto-bd1-equipo-02/
 ├── docs/
 │   ├── etapa-01/
@@ -64,3 +65,4 @@ proyecto-bd1-equipo-02/
 │       ├── seguridad/
 │       └── indices/
 └── README.md
+```
