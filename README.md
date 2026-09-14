@@ -23,6 +23,7 @@ El proyecto está organizado de la siguiente forma:
 proyecto-bd1-equipo-02/
 ├── docs/
 │   ├── etapa-01/
+│   ├   ├── Contribución individual -- Etapa 01
 │   │   ├── descripcion-caso.md
 │   │   ├── alcance.md
 │   │   ├── reglas-negocio.md
@@ -30,6 +31,7 @@ proyecto-bd1-equipo-02/
 │   ├── etapa-02/
 │   │   ├── der/
 │   │   │   └── der.png
+│   ├   ├── Contribución individual -- Etapa 02
 │   │   ├── modelo-relacional.md
 │   │   ├── normalizacion.md
 │   │   └── decisiones-diseno.md
