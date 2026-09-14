@@ -84,10 +84,3 @@ erDiagram
     PRODUCTO ||--o{ FACTURA : "detalla"
     TECNICO ||--o{ INSUMO : "usa"
 ```
-    EMPRESA ||--o{ PRODUCTO : "vende"
-    PROVEEDOR ||--o{ INSUMO : "provee"
-    PROVEEDOR ||--o{ PRODUCTO : "provee"
-    PROVEEDOR ||--o{ FACTURA : "asociado_a"
-    INSUMO ||--o{ FACTURA : "detalla"
-    PRODUCTO ||--o{ FACTURA : "detalla"
-    TECNICO ||--o{ INSUMO : "usa"
