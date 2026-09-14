@@ -2,8 +2,10 @@
 
 ## Alcance del Sistema
 
-* **Gestión Centralizada de Personas:** Administración unificada de datos personales obligatorios (DNI, Nombre, Apellido, Mail) mediante un modelo de herencia, abarcando tanto a los Clientes (para garantías y facturación) como a los Técnicos operativos.
-* **Gestión de Inventario Segregado:** Administración de stock dividida en dos líneas de negocio: Productos (para venta directa al público) e Insumos (componentes para uso interno de los técnicos en reparaciones).
-* **Gestión de Compras y Abastecimiento:** Registro de la reposición de mercadería (Productos e Insumos) a través de la carga de ⁠FACTURAS⁠ emitidas por los ⁠PROVEEDORES⁠ exclusivos.
-* **Gestión de Servicios Técnicos:** Trazabilidad completa de las reparaciones utilizando el ⁠EQUIPO⁠ como núcleo transaccional. Incluye el registro del dueño (CLIENTE), el responsable único de la reparación (TÉCNICO) y la vinculación con el comprobante final.
-* **Gestión de Ventas, Cobros y Garantías:** Generación de un ⁠COMPROBANTE⁠ unificado que respalda tanto compras de mostrador como servicios técnicos. Incluye la capacidad de registrar cobros combinando múltiples métodos de pago y la persistencia de precios históricos.
+* **Gestión Centralizada de Personas:** Administración unificada de la información personal (DNI, Nombre, Apellido, Correo, Teléfono) para todos los individuos que interactúan con el sistema, abarcando tanto a los clientes como al personal técnico.
+* **Gestión de Inventario Dual:** Control de stock segregado en dos flujos operativos:
+  * **Productos:** Artículos destinados a la comercialización directa (_Compra_).
+  * **Insumos:** Componentes y materiales destinados al consumo interno durante las reparaciones.
+* **Gestión de Abastecimiento (Compras a Proveedores):** Registro del ingreso de mercadería (tanto productos como insumos) a través de comprobantes de ingreso (_Factura_) vinculados a proveedores y gestionados por la _Empresa_.
+* **Gestión de Servicios Técnicos:** Trazabilidad de los equipos ingresados. El sistema registrará los datos del _Equipo_, su dueño (_Cliente_) y el responsable exclusivo de su reparación (_Técnico_).
+* **Módulo de Ventas y Facturación:** Emisión de un _Comprobante_ unificado para el cliente final, el cual consolida las operaciones provenientes tanto de la venta de mostrador (_Compra_) como de los servicios de reparación (_Equipo_).
