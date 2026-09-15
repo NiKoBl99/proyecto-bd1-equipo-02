@@ -59,7 +59,7 @@ Durante esta etapa considero que desarrollé la competencia de abstracción y mo
 # Contribución individual -- Etapa 01
 **Equipo:** 02
 **Integrante:** Cardozo Candia Santiago
-**Fecha:** 2026-09-14
+**Fecha:** 2026-09-15
 
 ## 1. Aporte realizado
   Participie activamente en las reglas de negocio del sistema y en que se podria centrar nuestro negocio
@@ -67,17 +67,14 @@ Durante esta etapa considero que desarrollé la competencia de abstracción y mo
 Participé en la elección del dominio del sistema (electrónica) y que reglas de negocio pense que eran las mas relevantes para la tarea
 
 ## 3. Problemas o dificultades identificadas
-Dificultad para consensuar la cardinalidad en las relaciones de componentes consumibles (insumos) y cómo reflejar el historial de precios sin alterar las tablas maestras, lo cual resolvimos ajustando las reglas de negocio.
+Tuve problemas en identificar las cardinalidades y las distintas entidades que podian aparecer
 
 ## 4. Soluciones o propuestas realizadas
 Propuse añadir las siguientes Reglas de Negocio:
-- **RN 4 (Emisión de Comprobantes)** Para formalizar el cierre de las operaciones, asegurando que tanto las ventas de mostrador como las reparaciones finalizadas cuenten con un respaldo documental unificado, el cual es indispensable para la posterior validación y gestión de garantías.
-- **RN 7 (Metodos de pago)** Para establecer un control estricto y auditable sobre los ingresos, garantizando que toda transacción quede vinculada obligatoriamente a canales financieros válidos y estructurados, evitando registros huérfanos o ambiguos.
+- **RN 4 (Emisión de Comprobantes)
+- **RN 8 (Historial de precios)** 
 
 ## 5. Evidencias en el repositorio
-- `docs/etapa-01/alcance.md`
-- `docs/etapa-01/decisiones-diseno.md`
-- Commits: "alcance del sistema en Etapa 1 en alcance.md", "añado Decisiones de Diseño en decisiones-diseno.md".
 
 ## 6. Reflexión individual
 ¿Qué concepto o competencia de Bases de Datos I considero que desarrollé en esta etapa?
