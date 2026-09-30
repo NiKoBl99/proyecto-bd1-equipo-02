@@ -53,9 +53,8 @@ VALUES
     ('2026-09-12', 'Factura B'),
     ('2026-09-15', 'Factura A'),
     ('2026-09-18', 'Factura A'),
-    ('2026-09-20', 'Ticket'),
+    ('2026-09-20', 'Ticket');
 GO
-
 
 INSERT INTO Tecnico (ID_Persona, ID_Empresa)
 VALUES 
@@ -66,7 +65,7 @@ VALUES
     (5, 3), 
     (6, 3), 
     (7, 4), 
-    (8, 4), 
+    (8, 4);
 GO
 
 INSERT INTO Compra (ID_Comprobante, ID_Cliente)
@@ -78,7 +77,7 @@ VALUES
     (5, 1),  
     (6, 2), 
     (7, 3),  
-    (8, 4),
+    (8, 4);
 GO
 
 -- Insertamos 8 registros en Equipos
