@@ -1,3 +1,50 @@
+--SE REGISTRA PERSONA 1
+INSERT INTO Persona (DNI, Nombre, Apellido, Telefono, Mail) VALUES ('87654321', 'ElGabo', 'Fava', '6666666666', 'elgabo666@email.com'); 
+INSERT INTO Empresa (Nombre) VALUES ('Techo Store Corrientes Capital'); 
+INSERT INTO cliente (ID_Persona) VALUES (1); 
+INSERT INTO Tecnico (ID_Persona, ID_Empresa) VALUES (1, 1); 
+
+--SE REGISTRA PERSONA 2
+INSERT INTO Persona (DNI, Nombre, Apellido, Telefono, Mail) VALUES ('34232323', 'Santi', 'Cardozo', '1234567890', 'santigg@email.com'); 
+INSERT INTO Empresa (Nombre) VALUES ('Grido Tecnologia'); 
+INSERT INTO cliente (ID_Persona) VALUES (2); 
+INSERT INTO Tecnico (ID_Persona, ID_Empresa) VALUES (2, 2); 
+
+--SE REGISTRA PERSONA 3
+INSERT INTO Persona (DNI, Nombre, Apellido, Telefono, Mail) VALUES ('32345234', 'Nico', 'Blanco', '3334445553', 'nicobk@email.com'); 
+INSERT INTO Empresa (Nombre) VALUES ('Carrefour'); 
+INSERT INTO cliente (ID_Persona) VALUES (3); 
+INSERT INTO Tecnico (ID_Persona, ID_Empresa) VALUES (3, 3); 
+
+--SE REGISTRA PERSONA 4
+INSERT INTO Persona (DNI, Nombre, Apellido, Telefono, Mail) VALUES ('343434232', 'Luciano', 'Gerez', '1223332221', 'lucgerz@email.com'); 
+INSERT INTO Empresa (Nombre) VALUES ('Tecno Corrientes'); 
+INSERT INTO cliente (ID_Persona) VALUES (4); 
+INSERT INTO Tecnico (ID_Persona, ID_Empresa) VALUES (4, 4); 
+
+--SE REGISTRA PERSONA 5
+INSERT INTO Persona (DNI, Nombre, Apellido, Telefono, Mail) VALUES ('342323414', 'Nico', 'Blanco', '3334445553', 'nicobk2@email.com'); 
+
+INSERT INTO cliente (ID_Persona) VALUES (5); 
+INSERT INTO Tecnico (ID_Persona, ID_Empresa) VALUES (5, 3); 
+
+--SE REGISTRA PERSONA 6
+INSERT INTO Persona (DNI, Nombre, Apellido, Telefono, Mail) VALUES ('11345234', 'Nico', 'Negro', '3334445553', 'nicobk3@email.com'); 
+INSERT INTO cliente (ID_Persona) VALUES (6); 
+INSERT INTO Tecnico (ID_Persona, ID_Empresa) VALUES (6, 3); 
+
+--SE REGISTRA PERSONA 7
+INSERT INTO Persona (DNI, Nombre, Apellido, Telefono, Mail) VALUES ('434141414', 'Nico', 'Torres', '3334445553', 'nicobk4@email.com'); 
+INSERT INTO cliente (ID_Persona) VALUES (7); 
+INSERT INTO Tecnico (ID_Persona, ID_Empresa) VALUES (7, 3); 
+
+--SE REGISTRA PERSONA 8
+INSERT INTO Persona (DNI, Nombre, Apellido, Telefono, Mail) VALUES ('33344231', 'Lionel', 'Perez', '232342311', 'lmisss@email.com'); 
+INSERT INTO Empresa (Nombre) VALUES ('RYR'); 
+INSERT INTO cliente (ID_Persona) VALUES (8); 
+INSERT INTO Tecnico (ID_Persona, ID_Empresa) VALUES (8, 5); 
+
+
 -- Insertamos 8 registros en Equipos
 INSERT INTO Equipo (descripcion, ID_cliente, ID_tecnico, ID_comprobante)
 VALUES 
