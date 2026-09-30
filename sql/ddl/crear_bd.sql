@@ -118,3 +118,45 @@ CREATE TABLE Compra
     CONSTRAINT PK_COMPRA PRIMARY KEY (id_compra)
 );
 GO
+
+CREATE TABLE Detalle_Pago
+(
+    id_comprobante INT,
+    id_metodo INT,
+    monto DECIMAL(10,2),
+    CONSTRAINT PK_DETALLE_PAGO PRIMARY KEY (id_comprobante, id_metodo)
+);
+GO
+
+CREATE TABLE Detalle_Reparacion
+(
+    id_detalle_reparacion INT IDENTITY(1,1) NOT NULL,
+    cantidad INT,
+    id_equipo INT,
+    id_insumo INT,
+    id_producto INT,
+    CONSTRAINT PK_DETALLE_REPARACION PRIMARY KEY (id_detalle_reparacion)
+);
+GO
+
+CREATE TABLE Detalle_Factura
+(
+    id_detalle_factura INT IDENTITY(1,1) NOT NULL,
+    cantidad INT NOT NULL,
+    precio_compra DECIMAL(10,2) NOT NULL,
+    id_factura INT,
+    id_insumo INT,
+    id_producto INT,
+    CONSTRAINT PK_DETALLE_FACTURA PRIMARY KEY (id_detalle_factura)
+);
+GO
+
+CREATE TABLE Detalle_Compra
+(
+    id_compra INT,
+    id_producto INT,
+    cantidad INT NOT NULL,
+    subtotal DECIMAL(10,2) NOT NULL,
+    CONSTRAINT PK_DETALLE_COMPRA PRIMARY KEY (id_compra, id_producto)
+);
+GO
