@@ -152,13 +152,12 @@ CREATE TABLE Detalle_Factura (
 );
 GO
 
-CREATE TABLE Detalle_Compra(
-    ID_Compra int identity (1,1) primary key,
-    constraint fk_detallec_compra FOREIGN KEY (ID_Compra) references Compra(ID_Compra),
-    ID_Producto int,
-    constraint fk_detallec_producto FOREIGN KEY (ID_Producto) references Producto(ID_Producto),
-    Cantidad_Compra int not null,
-    Subtotal decimal (10,2) not null
+CREATE TABLE Detalle_Compra( 
+ID_Detalle_Compra int identity (1,1) primary key,
+ID_Compra int,
+constraint fk_detallec_compra FOREIGN KEY (ID_Compra) references Compra(ID_Compra),
+ID_Producto int,
+constraint fk_detallec_producto FOREIGN KEY (ID_Producto) references Producto(ID_Producto), Cantidad_Compra int not null, Subtotal decimal (10,2) not null ); GO
 );
 GO
 
