@@ -35,3 +35,40 @@ CREATE TABLE Proveedor
     CONSTRAINT PK_PROVEEDOR PRIMARY KEY (id_proveedor)
 );
 GO
+
+CREATE TABLE Tecnico
+(
+    id_tecnico INT IDENTITY(1,1) NOT NULL,
+    id_persona INT,
+    id_empresa INT,
+    CONSTRAINT PK_TECNICO PRIMARY KEY (id_tecnico)
+);
+GO
+
+CREATE TABLE Producto
+(
+    id_producto INT IDENTITY(1,1) NOT NULL,
+    stock INT NOT NULL,
+    nombre VARCHAR(40) NOT NULL,
+    precio DECIMAL(10,2) NOT NULL,
+    id_empresa INT,
+    id_proveedor INT,
+    CONSTRAINT PK_PRODUCTO PRIMARY KEY (id_producto),
+    CONSTRAINT CK_PRODUCTO_STOCK CHECK (stock >= 0),
+    CONSTRAINT CK_PRODUCTO_PRECIO CHECK (precio >= 0)
+);
+GO
+
+CREATE TABLE Insumo
+(
+    id_insumo INT IDENTITY(1,1) NOT NULL,
+    nombre VARCHAR(40) NOT NULL,
+    stock INT NOT NULL,
+    precio DECIMAL(10,2) NOT NULL,
+    id_empresa INT,
+    id_proveedor INT,
+    CONSTRAINT PK_INSUMO PRIMARY KEY (id_insumo),
+    CONSTRAINT CK_INSUMO_STOCK CHECK (stock >= 0),
+    CONSTRAINT CK_INSUMO_PRECIO CHECK (precio >= 0)
+);
+GO
