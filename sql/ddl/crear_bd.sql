@@ -1,244 +1,151 @@
-CREATE TABLE Persona
-(
-    id_persona INT IDENTITY(1,1) NOT NULL,
-    dni INT UNIQUE NOT NULL,
-    nombre VARCHAR(20) NOT NULL,
-    apellido VARCHAR(20) NOT NULL,
-    telefono VARCHAR(15),
-    email VARCHAR(30) UNIQUE,
-    CONSTRAINT PK_PERSONA PRIMARY KEY (id_persona)
+CREATE TABLE Persona(
+    ID_Persona int identity (1,1) primary key,
+    DNI VARCHAR (50) NOT NULL UNIQUE,
+    Nombre Varchar (50) not null,
+    Apellido varchar (50) not null,
+    Telefono varchar (50) not null,
+    Mail varchar (50) not null UNIQUE
 );
 GO
 
-CREATE TABLE Metodo_Pago
-(
-    id_metodo INT IDENTITY(1,1) NOT NULL,
-    descripcion VARCHAR(20) NOT NULL,
-    CONSTRAINT PK_METODO_PAGO PRIMARY KEY (id_metodo)
+CREATE TABLE cliente (
+    ID_Cliente int identity (1,1) primary key,
+    ID_Persona int,
+    constraint fk_Cliente_Persona FOREIGN KEY (ID_Persona) references Persona(ID_Persona) 
 );
 GO
 
-CREATE TABLE Empresa
-(
-    id_empresa INT IDENTITY(1,1) NOT NULL,
-    nombre VARCHAR(40) NOT NULL,
-    CONSTRAINT PK_EMPRESA PRIMARY KEY (id_empresa)
+CREATE TABLE Empresa(
+    ID_Empresa int identity (1,1) primary key,
+    Nombre varchar (50) not null
 );
 GO
 
-CREATE TABLE Proveedor
-(
-    id_proveedor INT IDENTITY(1,1) NOT NULL,
-    cuit BIGINT UNIQUE NOT NULL, -- BIGINT por la longitud del CUIT
-    nombre VARCHAR(40) NOT NULL,
-    email VARCHAR(30),
-    CONSTRAINT PK_PROVEEDOR PRIMARY KEY (id_proveedor)
+CREATE TABLE Tecnico(
+    ID_Tecnico int identity (1,1) primary key, 
+    ID_Persona int,
+    constraint fk_Tecnico_Persona FOREIGN KEY (ID_Persona) references Persona(ID_Persona),
+    ID_Empresa int,
+    constraint fk_Tecnico_Empresa FOREIGN KEY (ID_Empresa) references Empresa(ID_Empresa)
 );
 GO
 
-CREATE TABLE Cliente
-(
-    id_cliente INT IDENTITY(1,1) NOT NULL,
-    id_persona INT,
-    CONSTRAINT PK_CLIENTE PRIMARY KEY (id_cliente)
+CREATE TABLE Comprobante(
+    ID_comprobante int identity (1,1) primary key,
+    fecha_emision date, 
+    tipo_emision varchar (50)
 );
 GO
 
-CREATE TABLE Tecnico
-(
-    id_tecnico INT IDENTITY(1,1) NOT NULL,
-    id_persona INT,
-    id_empresa INT,
-    CONSTRAINT PK_TECNICO PRIMARY KEY (id_tecnico)
+CREATE TABLE Compra (
+    ID_compra int identity (1,1) primary key,
+    ID_Comprobante int,
+    constraint fk_compra_comprobante FOREIGN KEY (ID_comprobante) references Comprobante(ID_comprobante),
+    ID_Cliente int,
+    constraint fk_compra_cliente FOREIGN KEY (ID_cliente) references Cliente (ID_cliente)
 );
 GO
 
-CREATE TABLE Producto
-(
-    id_producto INT IDENTITY(1,1) NOT NULL,
-    stock INT NOT NULL,
-    nombre VARCHAR(40) NOT NULL,
-    precio DECIMAL(10,2) NOT NULL,
-    id_empresa INT,
-    id_proveedor INT,
-    CONSTRAINT PK_PRODUCTO PRIMARY KEY (id_producto),
-    CONSTRAINT CK_PRODUCTO_STOCK CHECK (stock >= 0),
-    CONSTRAINT CK_PRODUCTO_PRECIO CHECK (precio >= 0)
+CREATE TABLE Equipo (
+    ID_equipo int identity (1,1) primary key,
+    descripcion varchar (100),
+    ID_cliente int,
+    constraint fk_equipo_cliente FOREIGN KEY (ID_cliente) references Cliente(ID_cliente),
+    ID_tecnico int,
+    constraint fk_equipo_tecnico FOREIGN KEY (ID_tecnico) references Tecnico(ID_tecnico),
+    ID_comprobante int,
+    constraint fk_equipo_comprobante FOREIGN KEY (ID_comprobante) references Comprobante(ID_comprobante)
 );
 GO
 
-CREATE TABLE Insumo
-(
-    id_insumo INT IDENTITY(1,1) NOT NULL,
-    nombre VARCHAR(40) NOT NULL,
-    stock INT NOT NULL,
-    precio DECIMAL(10,2) NOT NULL,
-    id_empresa INT,
-    id_proveedor INT,
-    CONSTRAINT PK_INSUMO PRIMARY KEY (id_insumo),
-    CONSTRAINT CK_INSUMO_STOCK CHECK (stock >= 0),
-    CONSTRAINT CK_INSUMO_PRECIO CHECK (precio >= 0)
+CREATE TABLE Metodo_Pago (
+    ID_Metodo int identity (1,1) primary key,
+    ID_comprobante int,
+    constraint fk_metodo_comprobante FOREIGN KEY (ID_Comprobante) references Comprobante(ID_Comprobante),
+    Descripcion varchar (50) not null
 );
 GO
 
-CREATE TABLE Comprobante
-(
-    id_comprobante INT IDENTITY(1,1) NOT NULL,
-    fecha_emision DATE NOT NULL,
-    descripcion VARCHAR(20) NOT NULL, -- originalmente era "tipo_emision" me parece mas apropiado cambiarlo a descripcion
-    CONSTRAINT PK_COMPROBANTE PRIMARY KEY (id_comprobante)
+CREATE TABLE Proveedor (
+    ID_Proveedor int identity (1,1) primary key,
+    CUIT int unique not null,
+    Nombre varchar (50),
+    Mail varchar (50)
 );
 GO
 
-CREATE TABLE Equipo
-(
-    id_equipo INT IDENTITY(1,1) NOT NULL,
-    descripcion VARCHAR(40) NOT NULL,
-    id_cliente INT,
-    id_tecnico INT,
-    id_comprobante INT,
-    CONSTRAINT PK_EQUIPO PRIMARY KEY (id_equipo)
+CREATE TABLE Producto(
+    ID_Producto int identity (1,1) primary key,
+    Stock_producto int not null,
+    Nombre_producto varchar (50) not null,
+    Precio_producto decimal (10,2) not null,
+    ID_Empresa int,
+    constraint fk_producto_empresa FOREIGN KEY (ID_Empresa) references Empresa(ID_Empresa),
+    ID_Proveedor int,
+    constraint fk_producto_proveedor FOREIGN KEY (ID_Proveedor) references Proveedor(ID_Proveedor)
 );
 GO
 
-CREATE TABLE Factura
-(
-    id_factura INT IDENTITY(1,1) NOT NULL,
-    id_empresa INT,
-    id_proveedor INT,
-    CONSTRAINT PK_FACTURA PRIMARY KEY (id_factura)
+CREATE TABLE Insumo(
+    ID_Insumo int identity (1,1) primary key,
+    Stock_insumo int not null,
+    Nombre_insumo varchar (50) not null,
+    Precio_insumo decimal (10,2) not null,
+    ID_Empresa int,
+    constraint fk_insumo_empresa FOREIGN KEY (ID_Empresa) references Empresa(ID_Empresa),
+    ID_Proveedor int,
+    constraint fk_insumo_proveedor FOREIGN KEY (ID_Proveedor) references Proveedor(ID_Proveedor)
 );
 GO
 
-CREATE TABLE Compra
-(
-    id_compra INT IDENTITY(1,1) NOT NULL,
-    id_cliente INT,
-    id_comprobante INT,
-    CONSTRAINT PK_COMPRA PRIMARY KEY (id_compra)
+CREATE TABLE Detalle_Pago(
+    ID_Metodo int,
+    constraint fk_detalleP_metodo FOREIGN KEY (ID_Metodo) references Metodo_Pago(ID_Metodo),
+    ID_Comprobante int,
+    constraint fk_detalle_comprobante FOREIGN KEY (ID_Comprobante) references Comprobante(ID_Comprobante),
+    Monto decimal (10,2) not null
 );
 GO
 
-CREATE TABLE Detalle_Pago
-(
-    id_comprobante INT,
-    id_metodo INT,
-    monto DECIMAL(10,2),
-    CONSTRAINT PK_DETALLE_PAGO PRIMARY KEY (id_comprobante, id_metodo)
+CREATE TABLE Factura(
+    ID_Factura int identity (1,1) primary key,
+    ID_Empresa int,
+    constraint fk_factura_empresa FOREIGN KEY (ID_Empresa) references Empresa(ID_Empresa),
+    ID_Proveedor int,
+    constraint fk_factura_proveedor FOREIGN KEY (ID_Proveedor) references Proveedor(ID_Proveedor)
 );
 GO
 
-CREATE TABLE Detalle_Reparacion
-(
-    id_detalle_reparacion INT IDENTITY(1,1) NOT NULL,
-    cantidad INT,
-    id_equipo INT,
-    id_insumo INT,
-    id_producto INT,
-    CONSTRAINT PK_DETALLE_REPARACION PRIMARY KEY (id_detalle_reparacion)
+CREATE TABLE Detalle_Factura (
+    ID_DetalleF int identity (1,1) primary key,
+    Cantidad_Factura int not null,
+    Precio_compra decimal (10,2) not null,
+    ID_Factura int,
+    constraint fk_detallef_factura FOREIGN KEY (ID_Factura) references Factura(ID_Factura),
+    ID_Insumo int,
+    constraint fk_detallef_insumo FOREIGN KEY (ID_Insumo) references Insumo(ID_Insumo),
+    ID_Producto int,
+    constraint fk_detallef_producto FOREIGN KEY (ID_Producto) references Producto(ID_Producto)
 );
 GO
 
-CREATE TABLE Detalle_Factura
-(
-    id_detalle_factura INT IDENTITY(1,1) NOT NULL,
-    cantidad INT NOT NULL,
-    precio_compra DECIMAL(10,2) NOT NULL,
-    id_factura INT,
-    id_insumo INT,
-    id_producto INT,
-    CONSTRAINT PK_DETALLE_FACTURA PRIMARY KEY (id_detalle_factura)
+CREATE TABLE Detalle_Compra(
+    ID_Compra int identity (1,1) primary key,
+    constraint fk_detallec_compra FOREIGN KEY (ID_Compra) references Compra(ID_Compra),
+    ID_Producto int,
+    constraint fk_detallec_producto FOREIGN KEY (ID_Producto) references Producto(ID_Producto),
+    Cantidad_Compra int not null,
+    Subtotal decimal (10,2) not null
 );
 GO
 
-CREATE TABLE Detalle_Compra
-(
-    id_compra INT,
-    id_producto INT,
-    cantidad INT NOT NULL,
-    subtotal DECIMAL(10,2) NOT NULL,
-    CONSTRAINT PK_DETALLE_COMPRA PRIMARY KEY (id_compra, id_producto)
+CREATE TABLE Detalle_Reparacion(
+    ID_Detalle_Reparacion int identity (1,1) primary key,
+    Cantidad int not null,
+    ID_Equipo int,
+    constraint fk_detaller_equipo FOREIGN KEY (ID_Equipo) references Equipo(ID_Equipo),
+    ID_Insumo int,
+    constraint fk_detaller_insumo FOREIGN KEY (ID_Insumo) references Insumo(ID_Insumo),
+    ID_Producto int,
+    constraint fk_detaller_producto FOREIGN KEY (ID_Producto) references Producto(ID_Producto)
 );
-GO
-
--- Claves foraneas
-ALTER TABLE Cliente
-ADD CONSTRAINT FK_Cliente_Persona
-FOREIGN KEY (id_persona) REFERENCES Persona (id_persona);
-GO
-
-ALTER TABLE Tecnico
-ADD CONSTRAINT FK_Tecnico_Persona
-FOREIGN KEY (id_persona) REFERENCES Persona (id_persona),
-    CONSTRAINT FK_Tecnico_Empresa
-FOREIGN KEY (id_empresa) REFERENCES Empresa (id_empresa);
-GO
-
-ALTER TABLE Producto
-ADD CONSTRAINT FK_Producto_Empresa
-FOREIGN KEY (id_empresa) REFERENCES Empresa (id_empresa),
-    CONSTRAINT FK_Producto_Proveedor
-FOREIGN KEY (id_proveedor) REFERENCES Proveedor (id_proveedor);
-GO
-
-ALTER TABLE Insumo
-ADD CONSTRAINT FK_Insumo_Empresa
-FOREIGN KEY (id_empresa) REFERENCES Empresa (id_empresa),
-    CONSTRAINT FK_Insumo_Proveedor
-FOREIGN KEY (id_proveedor) REFERENCES Proveedor (id_proveedor);
-GO
-
-ALTER TABLE Equipo
-ADD CONSTRAINT FK_Equipo_Cliente
-FOREIGN KEY (id_cliente) REFERENCES Cliente (id_cliente),
-    CONSTRAINT FK_Equipo_Tecnico
-FOREIGN KEY (id_tecnico) REFERENCES Tecnico (id_tecnico),
-    CONSTRAINT FK_Equipo_Comprobante
-FOREIGN KEY (id_comprobante) REFERENCES Comprobante (id_comprobante);
-GO
-
-ALTER TABLE Factura
-ADD CONSTRAINT FK_Factura_Empresa
-FOREIGN KEY (id_empresa) REFERENCES Empresa (id_empresa),
-    CONSTRAINT FK_Factura_Proveedor
-FOREIGN KEY (id_proveedor) REFERENCES Proveedor (id_proveedor);
-GO
-
-ALTER TABLE Compra
-ADD CONSTRAINT FK_Compra_Cliente
-FOREIGN KEY (id_cliente) REFERENCES Cliente (id_cliente),
-    CONSTRAINT FK_Compra_Comprobante
-FOREIGN KEY (id_comprobante) REFERENCES Comprobante (id_comprobante);
-GO
-
-ALTER TABLE Detalle_Pago
-ADD CONSTRAINT FK_Detalle_Pago_Comprobante
-FOREIGN KEY (id_comprobante) REFERENCES Comprobante (id_comprobante),
-    CONSTRAINT FK_Detalle_Pago_Metodo
-FOREIGN KEY (id_metodo) REFERENCES Metodo_Pago (id_metodo);
-GO
-
-ALTER TABLE Detalle_Reparacion
-ADD CONSTRAINT FK_Detalle_Reparacion_Equipo
-FOREIGN KEY (id_equipo) REFERENCES Equipo (id_equipo),
-    CONSTRAINT FK_Detalle_Reparacion_Insumo
-FOREIGN KEY (id_insumo) REFERENCES Insumo (id_insumo),
-    CONSTRAINT FK_Detalle_Reparacion_Producto
-FOREIGN KEY (id_producto) REFERENCES Producto (id_producto);
-GO
-
-ALTER TABLE Detalle_Factura
-ADD CONSTRAINT FK_Detalle_Factura_Factura
-FOREIGN KEY (id_factura) REFERENCES Factura (id_factura),
-    CONSTRAINT FK_Detalle_Factura_Insumo
-FOREIGN KEY (id_insumo) REFERENCES Insumo (id_insumo),
-    CONSTRAINT FK_Detalle_Factura_Producto
-FOREIGN KEY (id_producto) REFERENCES Producto (id_producto);
-GO
-
-ALTER TABLE Detalle_Compra
-ADD CONSTRAINT FK_Detalle_Compra_Compra
-FOREIGN KEY (id_compra) REFERENCES Compra (id_compra),
-    CONSTRAINT FK_Detalle_Compra_Producto
-FOREIGN KEY (id_producto) REFERENCES Producto (id_producto);
-GO
