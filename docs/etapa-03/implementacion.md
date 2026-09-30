@@ -87,7 +87,7 @@ GO
 
 CREATE TABLE Proveedor (
     ID_Proveedor int identity (1,1) primary key,
-    CUIT int unique not null,
+    CUIT bigint unique not null,
     Nombre varchar (50),
     Mail varchar (50)
 );
