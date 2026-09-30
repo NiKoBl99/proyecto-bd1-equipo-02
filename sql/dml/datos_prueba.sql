@@ -69,10 +69,6 @@ VALUES
     (8, 4), 
 GO
 
--- =============================================
--- 3. POBLAR TABLA: Compra
--- (Solo usa ID_Cliente del 1 al 4)
--- =============================================
 INSERT INTO Compra (ID_Comprobante, ID_Cliente)
 VALUES 
     (1, 1),  
