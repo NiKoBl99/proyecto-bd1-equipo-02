@@ -44,6 +44,46 @@ INSERT INTO Empresa (Nombre) VALUES ('RYR');
 INSERT INTO cliente (ID_Persona) VALUES (8); 
 INSERT INTO Tecnico (ID_Persona, ID_Empresa) VALUES (8, 5); 
 
+INSERT INTO Comprobante (fecha_emision, tipo_emision)
+VALUES 
+    ('2026-09-01', 'Factura A'),
+    ('2026-09-02', 'Factura B'),
+    ('2026-09-05', 'Factura C'),
+    ('2026-09-10', 'Ticket'),
+    ('2026-09-12', 'Factura B'),
+    ('2026-09-15', 'Factura A'),
+    ('2026-09-18', 'Factura A'),
+    ('2026-09-20', 'Ticket'),
+GO
+
+
+INSERT INTO Tecnico (ID_Persona, ID_Empresa)
+VALUES 
+    (1, 1), 
+    (2, 1), 
+    (3, 2), 
+    (4, 2), 
+    (5, 3), 
+    (6, 3), 
+    (7, 4), 
+    (8, 4), 
+GO
+
+-- =============================================
+-- 3. POBLAR TABLA: Compra
+-- (Solo usa ID_Cliente del 1 al 4)
+-- =============================================
+INSERT INTO Compra (ID_Comprobante, ID_Cliente)
+VALUES 
+    (1, 1),  
+    (2, 2),  
+    (3, 3),  
+    (4, 4),  
+    (5, 1),  
+    (6, 2), 
+    (7, 3),  
+    (8, 4),
+GO
 
 -- Insertamos 8 registros en Equipos
 INSERT INTO Equipo (descripcion, ID_cliente, ID_tecnico, ID_comprobante)
