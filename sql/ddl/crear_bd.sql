@@ -36,6 +36,14 @@ CREATE TABLE Proveedor
 );
 GO
 
+CREATE TABLE Cliente
+(
+    id_cliente INT IDENTITY(1,1) NOT NULL,
+    id_persona INT,
+    CONSTRAINT PK_CLIENTE PRIMARY KEY (id_cliente)
+);
+GO
+
 CREATE TABLE Tecnico
 (
     id_tecnico INT IDENTITY(1,1) NOT NULL,
@@ -70,5 +78,43 @@ CREATE TABLE Insumo
     CONSTRAINT PK_INSUMO PRIMARY KEY (id_insumo),
     CONSTRAINT CK_INSUMO_STOCK CHECK (stock >= 0),
     CONSTRAINT CK_INSUMO_PRECIO CHECK (precio >= 0)
+);
+GO
+
+CREATE TABLE Comprobante
+(
+    id_comprobante INT IDENTITY(1,1) NOT NULL,
+    fecha_emision DATE NOT NULL,
+    descripcion VARCHAR(20) NOT NULL, -- originalmente era "tipo_emision" me parece mas apropiado cambiarlo a descripcion
+    CONSTRAINT PK_COMPROBANTE PRIMARY KEY (id_comprobante)
+);
+GO
+
+CREATE TABLE Equipo
+(
+    id_equipo INT IDENTITY(1,1) NOT NULL,
+    descripcion VARCHAR(40) NOT NULL,
+    id_cliente INT,
+    id_tecnico INT,
+    id_comprobante INT,
+    CONSTRAINT PK_EQUIPO PRIMARY KEY (id_equipo)
+);
+GO
+
+CREATE TABLE Factura
+(
+    id_factura INT IDENTITY(1,1) NOT NULL,
+    id_empresa INT,
+    id_proveedor INT,
+    CONSTRAINT PK_FACTURA PRIMARY KEY (id_factura)
+);
+GO
+
+CREATE TABLE Compra
+(
+    id_compra INT IDENTITY(1,1) NOT NULL,
+    id_cliente INT,
+    id_comprobante INT,
+    CONSTRAINT PK_COMPRA PRIMARY KEY (id_compra)
 );
 GO
