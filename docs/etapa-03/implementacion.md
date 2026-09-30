@@ -1,4 +1,4 @@
-# Implementación de la Base de Datos: Sistema de Ventas y Servicio Técnico de emepresa electronica 
+# Implementación de la Base de Datos: Empresa de venta y servicio de Electronica 
 
 ## 1. Introducción
 El presente documento detalla la implementación física (scripts SQL) de la base de datos diseñada para la gestión de una empresa dedicada a la venta de productos electrónicos y servicio técnico. El modelo relacional ha sido traducido a lenguaje SQL (Transact-SQL) estructurando adecuadamente las tablas maestras, transaccionales y de detalle.
@@ -12,179 +12,170 @@ Durante el paso del modelo Entidad-Relación a la implementación en SQL Server,
 
 ---
 
-## 3. Script DDL (Data Definition Language) - Creación del Esquema
+# Implementación de Base de Datos - Empresa de venta y servicio de Electronica 
 
-A continuación se detalla el script para la creación de las tablas y sus respectivas restricciones (Constraints).
+## 1. Creación de Tablas
 
 ```sql
--- ==========================================
--- 1. TABLAS MAESTRAS (Sin claves foráneas)
--- ==========================================
 CREATE TABLE Persona(
-    ID_Persona INT IDENTITY (1,1) PRIMARY KEY,
+    ID_Persona int identity (1,1) primary key,
     DNI VARCHAR (50) NOT NULL UNIQUE,
-    Nombre VARCHAR (50) NOT NULL,
-    Apellido VARCHAR (50) NOT NULL,
-    Telefono VARCHAR (50) NOT NULL,
-    Mail VARCHAR (50) NOT NULL UNIQUE
+    Nombre Varchar (50) not null,
+    Apellido varchar (50) not null,
+    Telefono varchar (50) not null,
+    Mail varchar (50) not null UNIQUE
+);
+GO
+
+CREATE TABLE cliente (
+    ID_Cliente int identity (1,1) primary key,
+    ID_Persona int,
+    constraint fk_Cliente_Persona FOREIGN KEY (ID_Persona) references Persona(ID_Persona) 
 );
 GO
 
 CREATE TABLE Empresa(
-    ID_Empresa INT IDENTITY (1,1) PRIMARY KEY,
-    Nombre VARCHAR (50) NOT NULL
-);
-GO
-
-CREATE TABLE Comprobante(
-    ID_comprobante INT IDENTITY (1,1) PRIMARY KEY,
-    fecha_emision DATE, 
-    tipo_emision VARCHAR (50)
-);
-GO
-
-CREATE TABLE Proveedor (
-    ID_Proveedor INT IDENTITY (1,1) PRIMARY KEY,
-    CUIT BIGINT UNIQUE NOT NULL, 
-    Nombre VARCHAR (50),
-    Mail VARCHAR (50)
-);
-GO
-
--- ==========================================
--- 2. TABLAS DE PRIMER NIVEL DE DEPENDENCIA
--- ==========================================
-CREATE TABLE Cliente (
-    ID_Cliente INT IDENTITY (1,1) PRIMARY KEY,
-    ID_Persona INT,
-    CONSTRAINT fk_Cliente_Persona FOREIGN KEY (ID_Persona) REFERENCES Persona(ID_Persona) 
+    ID_Empresa int identity (1,1) primary key,
+    Nombre varchar (50) not null
 );
 GO
 
 CREATE TABLE Tecnico(
-    ID_Tecnico INT IDENTITY (1,1) PRIMARY KEY, 
-    ID_Persona INT,
-    ID_Empresa INT,
-    CONSTRAINT fk_Tecnico_Persona FOREIGN KEY (ID_Persona) REFERENCES Persona(ID_Persona),
-    CONSTRAINT fk_Tecnico_Empresa FOREIGN KEY (ID_Empresa) REFERENCES Empresa(ID_Empresa)
+    ID_Tecnico int identity (1,1) primary key, 
+    ID_Persona int,
+    constraint fk_Tecnico_Persona FOREIGN KEY (ID_Persona) references Persona(ID_Persona),
+    ID_Empresa int,
+    constraint fk_Tecnico_Empresa FOREIGN KEY (ID_Empresa) references Empresa(ID_Empresa)
 );
 GO
 
-CREATE TABLE Metodo_Pago (
-    ID_Metodo INT IDENTITY (1,1) PRIMARY KEY,
-    ID_comprobante INT,
-    Descripcion VARCHAR (50) NOT NULL,
-    CONSTRAINT fk_metodo_comprobante FOREIGN KEY (ID_Comprobante) REFERENCES Comprobante(ID_Comprobante)
+CREATE TABLE Comprobante(
+    ID_comprobante int identity (1,1) primary key,
+    fecha_emision date, 
+    tipo_emision varchar (50)
 );
 GO
 
-CREATE TABLE Producto(
-    ID_Producto INT IDENTITY (1,1) PRIMARY KEY,
-    Stock_producto INT NOT NULL,
-    Nombre_producto VARCHAR (50) NOT NULL,
-    Precio_producto DECIMAL (10,2) NOT NULL,
-    ID_Empresa INT,
-    ID_Proveedor INT,
-    CONSTRAINT fk_producto_empresa FOREIGN KEY (ID_Empresa) REFERENCES Empresa(ID_Empresa),
-    CONSTRAINT fk_producto_proveedor FOREIGN KEY (ID_Proveedor) REFERENCES Proveedor(ID_Proveedor)
-);
-GO
-
-CREATE TABLE Insumo(
-    ID_Insumo INT IDENTITY (1,1) PRIMARY KEY,
-    Stock_insumo INT NOT NULL,
-    Nombre_insumo VARCHAR (50) NOT NULL,
-    Precio_insumo DECIMAL (10,2) NOT NULL,
-    ID_Empresa INT,
-    ID_Proveedor INT,
-    CONSTRAINT fk_insumo_empresa FOREIGN KEY (ID_Empresa) REFERENCES Empresa(ID_Empresa),
-    CONSTRAINT fk_insumo_proveedor FOREIGN KEY (ID_Proveedor) REFERENCES Proveedor(ID_Proveedor)
-);
-GO
-
-CREATE TABLE Factura(
-    ID_Factura INT IDENTITY (1,1) PRIMARY KEY,
-    ID_Empresa INT,
-    ID_Proveedor INT,
-    CONSTRAINT fk_factura_empresa FOREIGN KEY (ID_Empresa) REFERENCES Empresa(ID_Empresa),
-    CONSTRAINT fk_factura_proveedor FOREIGN KEY (ID_Proveedor) REFERENCES Proveedor(ID_Proveedor)
-);
-GO
-
--- ==========================================
--- 3. TABLAS DE SEGUNDO NIVEL DE DEPENDENCIA
--- ==========================================
 CREATE TABLE Compra (
-    ID_compra INT IDENTITY (1,1) PRIMARY KEY,
-    ID_Comprobante INT,
-    ID_Cliente INT,
-    CONSTRAINT fk_compra_comprobante FOREIGN KEY (ID_comprobante) REFERENCES Comprobante(ID_comprobante),
-    CONSTRAINT fk_compra_cliente FOREIGN KEY (ID_cliente) REFERENCES Cliente (ID_cliente)
+    ID_compra int identity (1,1) primary key,
+    ID_Comprobante int,
+    constraint fk_compra_comprobante FOREIGN KEY (ID_comprobante) references Comprobante(ID_comprobante),
+    ID_Cliente int,
+    constraint fk_compra_cliente FOREIGN KEY (ID_cliente) references Cliente (ID_cliente)
 );
 GO
 
 CREATE TABLE Equipo (
-    ID_equipo INT IDENTITY (1,1) PRIMARY KEY,
-    descripcion VARCHAR (100),
-    ID_cliente INT,
-    ID_tecnico INT,
-    ID_comprobante INT,
-    CONSTRAINT fk_equipo_cliente FOREIGN KEY (ID_cliente) REFERENCES Cliente(ID_cliente),
-    CONSTRAINT fk_equipo_tecnico FOREIGN KEY (ID_tecnico) REFERENCES Tecnico(ID_tecnico),
-    CONSTRAINT fk_equipo_comprobante FOREIGN KEY (ID_comprobante) REFERENCES Comprobante(ID_comprobante)
+    ID_equipo int identity (1,1) primary key,
+    descripcion varchar (100),
+    ID_cliente int,
+    constraint fk_equipo_cliente FOREIGN KEY (ID_cliente) references Cliente(ID_cliente),
+    ID_tecnico int,
+    constraint fk_equipo_tecnico FOREIGN KEY (ID_tecnico) references Tecnico(ID_tecnico),
+    ID_comprobante int,
+    constraint fk_equipo_comprobante FOREIGN KEY (ID_comprobante) references Comprobante(ID_comprobante)
+);
+GO
+
+CREATE TABLE Metodo_Pago (
+    ID_Metodo int identity (1,1) primary key,
+    ID_comprobante int,
+    constraint fk_metodo_comprobante FOREIGN KEY (ID_Comprobante) references Comprobante(ID_Comprobante),
+    Descripcion varchar (50) not null
+);
+GO
+
+CREATE TABLE Proveedor (
+    ID_Proveedor int identity (1,1) primary key,
+    CUIT int unique not null,
+    Nombre varchar (50),
+    Mail varchar (50)
+);
+GO
+
+CREATE TABLE Producto(
+    ID_Producto int identity (1,1) primary key,
+    Stock_producto int not null,
+    Nombre_producto varchar (50) not null,
+    Precio_producto decimal (10,2) not null,
+    ID_Empresa int,
+    constraint fk_producto_empresa FOREIGN KEY (ID_Empresa) references Empresa(ID_Empresa),
+    ID_Proveedor int,
+    constraint fk_producto_proveedor FOREIGN KEY (ID_Proveedor) references Proveedor(ID_Proveedor)
+);
+GO
+
+CREATE TABLE Insumo(
+    ID_Insumo int identity (1,1) primary key,
+    Stock_insumo int not null,
+    Nombre_insumo varchar (50) not null,
+    Precio_insumo decimal (10,2) not null,
+    ID_Empresa int,
+    constraint fk_insumo_empresa FOREIGN KEY (ID_Empresa) references Empresa(ID_Empresa),
+    ID_Proveedor int,
+    constraint fk_insumo_proveedor FOREIGN KEY (ID_Proveedor) references Proveedor(ID_Proveedor)
 );
 GO
 
 CREATE TABLE Detalle_Pago(
-    ID_Detalle_Pago INT IDENTITY (1,1) PRIMARY KEY,
-    ID_Metodo INT,
-    ID_Comprobante INT,
-    Monto DECIMAL (10,2) NOT NULL,
-    CONSTRAINT fk_detalleP_metodo FOREIGN KEY (ID_Metodo) REFERENCES Metodo_Pago(ID_Metodo),
-    CONSTRAINT fk_detalle_comprobante FOREIGN KEY (ID_Comprobante) REFERENCES Comprobante(ID_Comprobante)
+    ID_Metodo int,
+    constraint fk_detalleP_metodo FOREIGN KEY (ID_Metodo) references Metodo_Pago(ID_Metodo),
+    ID_Comprobante int,
+    constraint fk_detalle_comprobante FOREIGN KEY (ID_Comprobante) references Comprobante(ID_Comprobante),
+    Monto decimal (10,2) not null
 );
 GO
 
-CREATE TABLE Detalle_Factura (
-    ID_DetalleF INT IDENTITY (1,1) PRIMARY KEY,
-    Cantidad_Factura INT NOT NULL,
-    Precio_compra DECIMAL (10,2) NOT NULL,
-    ID_Factura INT,
-    ID_Insumo INT,
-    ID_Producto INT,
-    CONSTRAINT fk_detallef_factura FOREIGN KEY (ID_Factura) REFERENCES Factura(ID_Factura),
-    CONSTRAINT fk_detallef_insumo FOREIGN KEY (ID_Insumo) REFERENCES Insumo(ID_Insumo),
-    CONSTRAINT fk_detallef_producto FOREIGN KEY (ID_Producto) REFERENCES Producto(ID_Producto)
+CREATE TABLE Factura(
+    ID_Factura int identity (1,1) primary key,
+    ID_Empresa int,
+    constraint fk_factura_empresa FOREIGN KEY (ID_Empresa) references Empresa(ID_Empresa),
+    ID_Proveedor int,
+    constraint fk_factura_proveedor FOREIGN KEY (ID_Proveedor) references Proveedor(ID_Proveedor)
 );
 GO
 
 -- ==========================================
 -- 4. TABLAS DE TERCER NIVEL DE DEPENDENCIA
 -- ==========================================
+
+CREATE TABLE Detalle_Factura (
+    ID_DetalleF int identity (1,1) primary key,
+    Cantidad_Factura int not null,
+    Precio_compra decimal (10,2) not null,
+    ID_Factura int,
+    constraint fk_detallef_factura FOREIGN KEY (ID_Factura) references Factura(ID_Factura),
+    ID_Insumo int,
+    constraint fk_detallef_insumo FOREIGN KEY (ID_Insumo) references Insumo(ID_Insumo),
+    ID_Producto int,
+    constraint fk_detallef_producto FOREIGN KEY (ID_Producto) references Producto(ID_Producto)
+);
+GO
+
 CREATE TABLE Detalle_Compra(
-    ID_Detalle_Compra INT IDENTITY (1,1) PRIMARY KEY,
-    ID_Compra INT,
-    ID_Producto INT,
-    Cantidad_Compra INT NOT NULL,
-    Subtotal DECIMAL (10,2) NOT NULL,
-    CONSTRAINT fk_detallec_compra FOREIGN KEY (ID_Compra) REFERENCES Compra(ID_Compra),
-    CONSTRAINT fk_detallec_producto FOREIGN KEY (ID_Producto) REFERENCES Producto(ID_Producto)
+    ID_Compra int identity (1,1) primary key,
+    constraint fk_detallec_compra FOREIGN KEY (ID_Compra) references Compra(ID_Compra),
+    ID_Producto int,
+    constraint fk_detallec_producto FOREIGN KEY (ID_Producto) references Producto(ID_Producto),
+    Cantidad_Compra int not null,
+    Subtotal decimal (10,2) not null
 );
 GO
 
 CREATE TABLE Detalle_Reparacion(
-    ID_Detalle_Reparacion INT IDENTITY (1,1) PRIMARY KEY,
-    Cantidad INT NOT NULL,
-    ID_Equipo INT,
-    ID_Insumo INT,
-    ID_Producto INT,
-    CONSTRAINT fk_detaller_equipo FOREIGN KEY (ID_Equipo) REFERENCES Equipo(ID_Equipo),
-    CONSTRAINT fk_detaller_insumo FOREIGN KEY (ID_Insumo) REFERENCES Insumo(ID_Insumo),
-    CONSTRAINT fk_detaller_producto FOREIGN KEY (ID_Producto) REFERENCES Producto(ID_Producto)
+    ID_Detalle_Reparacion int identity (1,1) primary key,
+    Cantidad int not null,
+    ID_Equipo int,
+    constraint fk_detaller_equipo FOREIGN KEY (ID_Equipo) references Equipo(ID_Equipo),
+    ID_Insumo int,
+    constraint fk_detaller_insumo FOREIGN KEY (ID_Insumo) references Insumo(ID_Insumo),
+    ID_Producto int,
+    constraint fk_detaller_producto FOREIGN KEY (ID_Producto) references Producto(ID_Producto)
 );
+
+
 GO
 ```
-
 ---
 
 ## 4. Script DML (Data Manipulation Language) - Población de Datos
