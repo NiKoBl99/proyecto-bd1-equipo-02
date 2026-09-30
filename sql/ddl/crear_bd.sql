@@ -160,3 +160,85 @@ CREATE TABLE Detalle_Compra
     CONSTRAINT PK_DETALLE_COMPRA PRIMARY KEY (id_compra, id_producto)
 );
 GO
+
+-- Claves foraneas
+ALTER TABLE Cliente
+ADD CONSTRAINT FK_Cliente_Persona
+FOREIGN KEY (id_persona) REFERENCES Persona (id_persona);
+GO
+
+ALTER TABLE Tecnico
+ADD CONSTRAINT FK_Tecnico_Persona
+FOREIGN KEY (id_persona) REFERENCES Persona (id_persona),
+    CONSTRAINT FK_Tecnico_Empresa
+FOREIGN KEY (id_empresa) REFERENCES Empresa (id_empresa);
+GO
+
+ALTER TABLE Producto
+ADD CONSTRAINT FK_Producto_Empresa
+FOREIGN KEY (id_empresa) REFERENCES Empresa (id_empresa),
+    CONSTRAINT FK_Producto_Proveedor
+FOREIGN KEY (id_proveedor) REFERENCES Proveedor (id_proveedor);
+GO
+
+ALTER TABLE Insumo
+ADD CONSTRAINT FK_Insumo_Empresa
+FOREIGN KEY (id_empresa) REFERENCES Empresa (id_empresa),
+    CONSTRAINT FK_Insumo_Proveedor
+FOREIGN KEY (id_proveedor) REFERENCES Proveedor (id_proveedor);
+GO
+
+ALTER TABLE Equipo
+ADD CONSTRAINT FK_Equipo_Cliente
+FOREIGN KEY (id_cliente) REFERENCES Cliente (id_cliente),
+    CONSTRAINT FK_Equipo_Tecnico
+FOREIGN KEY (id_tecnico) REFERENCES Tecnico (id_tecnico),
+    CONSTRAINT FK_Equipo_Comprobante
+FOREIGN KEY (id_comprobante) REFERENCES Comprobante (id_comprobante);
+GO
+
+ALTER TABLE Factura
+ADD CONSTRAINT FK_Factura_Empresa
+FOREIGN KEY (id_empresa) REFERENCES Empresa (id_empresa),
+    CONSTRAINT FK_Factura_Proveedor
+FOREIGN KEY (id_proveedor) REFERENCES Proveedor (id_proveedor);
+GO
+
+ALTER TABLE Compra
+ADD CONSTRAINT FK_Compra_Cliente
+FOREIGN KEY (id_cliente) REFERENCES Cliente (id_cliente),
+    CONSTRAINT FK_Compra_Comprobante
+FOREIGN KEY (id_comprobante) REFERENCES Comprobante (id_comprobante);
+GO
+
+ALTER TABLE Detalle_Pago
+ADD CONSTRAINT FK_Detalle_Pago_Comprobante
+FOREIGN KEY (id_comprobante) REFERENCES Comprobante (id_comprobante),
+    CONSTRAINT FK_Detalle_Pago_Metodo
+FOREIGN KEY (id_metodo) REFERENCES Metodo_Pago (id_metodo);
+GO
+
+ALTER TABLE Detalle_Reparacion
+ADD CONSTRAINT FK_Detalle_Reparacion_Equipo
+FOREIGN KEY (id_equipo) REFERENCES Equipo (id_equipo),
+    CONSTRAINT FK_Detalle_Reparacion_Insumo
+FOREIGN KEY (id_insumo) REFERENCES Insumo (id_insumo),
+    CONSTRAINT FK_Detalle_Reparacion_Producto
+FOREIGN KEY (id_producto) REFERENCES Producto (id_producto);
+GO
+
+ALTER TABLE Detalle_Factura
+ADD CONSTRAINT FK_Detalle_Factura_Factura
+FOREIGN KEY (id_factura) REFERENCES Factura (id_factura),
+    CONSTRAINT FK_Detalle_Factura_Insumo
+FOREIGN KEY (id_insumo) REFERENCES Insumo (id_insumo),
+    CONSTRAINT FK_Detalle_Factura_Producto
+FOREIGN KEY (id_producto) REFERENCES Producto (id_producto);
+GO
+
+ALTER TABLE Detalle_Compra
+ADD CONSTRAINT FK_Detalle_Compra_Compra
+FOREIGN KEY (id_compra) REFERENCES Compra (id_compra),
+    CONSTRAINT FK_Detalle_Compra_Producto
+FOREIGN KEY (id_producto) REFERENCES Producto (id_producto);
+GO
