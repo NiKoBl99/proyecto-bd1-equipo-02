@@ -17,6 +17,10 @@ GROUP BY
     Cliente.ID_Cliente,
     Persona.Nombre,
     Persona.Apellido
+    COUNT(DISTINCT Compra.ID_compra)AS
+    Cantidad_Compras,
+    SUM(Detalle_Compra.Subtotal)AS
+    Total_Comprado
 HAVING SUM(Detalle_Compra.Subtotal) > 100000
 ORDER BY Total_Comprado DESC;
 
