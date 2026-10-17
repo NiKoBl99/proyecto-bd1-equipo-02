@@ -8,7 +8,6 @@ SELECT
     Producto.Nombre_producto,
     Detalle_Compra.Cantidad_Compra,
     Detalle_Compra.Subtotal,
-
     FROM Compra
 INNER JOIN Comprobante
     ON Compra.ID_Comprobante = Comprobante.ID_comprobante
