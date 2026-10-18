@@ -22,3 +22,6 @@ INNER JOIN Detalle_Compra
     ON Compra.ID_compra = Detalle_Compra.ID_Compra
 INNER JOIN Producto
     ON Detalle_Compra.ID_Producto = Producto.ID_Producto
+ORDER BY
+    Compra.ID_compra,
+    Detalle_Compra.ID_Detalle_Compra;
