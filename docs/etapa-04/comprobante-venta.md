@@ -8,6 +8,9 @@ SELECT
     Producto.Nombre_producto,
     Detalle_Compra.Cantidad_Compra,
     Detalle_Compra.Subtotal,
+        SUM(Detalle_Compra.Subtotal) OVER (
+            PARTITION BY Compra.ID_compra
+    ) AS Total_Compra
     FROM Compra
 INNER JOIN Comprobante
     ON Compra.ID_Comprobante = Comprobante.ID_comprobante
