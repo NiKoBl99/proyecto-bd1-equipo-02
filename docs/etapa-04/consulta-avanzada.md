@@ -1,7 +1,14 @@
+# Consulta de Compras por Cliente
+
+Esta consulta obtiene los clientes que han comprado más de $100,000 en el año 2026, ordenados por el total comprado de forma descendente.
+
+```sql
 SELECT
     Cliente.ID_Cliente,
     Persona.Nombre,
     Persona.Apellido,
+    COUNT(DISTINCT Compra.ID_compra) AS Cantidad_Compras,
+    SUM(Detalle_Compra.Subtotal) AS Total_Comprado
 FROM Cliente
 INNER JOIN Persona
     ON Cliente.ID_Persona = Persona.ID_Persona
@@ -17,10 +24,6 @@ GROUP BY
     Cliente.ID_Cliente,
     Persona.Nombre,
     Persona.Apellido
-    COUNT(DISTINCT Compra.ID_compra)AS
-    Cantidad_Compras,
-    SUM(Detalle_Compra.Subtotal)AS
-    Total_Comprado
 HAVING SUM(Detalle_Compra.Subtotal) > 100000
 ORDER BY Total_Comprado DESC;
-
+```
