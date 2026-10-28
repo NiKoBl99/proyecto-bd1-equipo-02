@@ -1,3 +1,5 @@
+CREATE DATABASE SistemaVentasYservicios
+
 CREATE TABLE Persona(
     ID_Persona int identity (1,1) primary key,
     DNI VARCHAR (50) NOT NULL UNIQUE,
