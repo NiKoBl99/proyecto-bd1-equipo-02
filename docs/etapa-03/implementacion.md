@@ -14,9 +14,11 @@ Durante el paso del modelo Entidad-Relación a la implementación en SQL Server,
 
 # Implementación de Base de Datos - Empresa de venta y servicio de Electronica 
 
-## 1. Creación de Tablas
+## 1. Creación de Base de Datos y Tablas 
 
 ```sql
+CREATE DATABASE SistemaVentasYservicios
+
 CREATE TABLE Persona(
     ID_Persona int identity (1,1) primary key,
     DNI VARCHAR (50) NOT NULL UNIQUE,
