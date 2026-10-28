@@ -1,17 +1,24 @@
-1. Procedimientos y funciones almacenadas
-1.1 Definición y objetivo
+# 1. Procedimientos y funciones almacenadas
+
+## 1.1 Definición y objetivo
 Un procedimiento almacenado es un programa SQL guardado en la base de datos que puede ejecutar varias operaciones (insertar, actualizar, validar). Una función recibe parámetros y devuelve un valor escalar o una tabla. El objetivo es centralizar la lógica de negocio en la base y no repetirla en cada consulta o aplicación.
-1.2 Ventajas y aplicaciones
-•	Reutilizan lógica de negocio y reducen código repetido.
-•	Mejoran la mantenibilidad: una regla se cambia en un solo lugar.
-•	Permiten dar permisos de ejecución sin dar acceso directo a las tablas (ver tema 4).
-•	Aplicaciones: registrar una venta completa, calcular descuentos, emitir reportes.
-1.3 Implementación en SQL Server Express
-Se usan CREATE FUNCTION y CREATE PROCEDURE (o CREATE OR ALTER, disponible desde SQL Server 2016 SP1). Cada uno debe ir en su propio lote, separado con GO.
-1.4 Caso aplicado al sistema
-•	Función dbo.fn_CalcularDescuentoCliente: suma lo comprado históricamente por un cliente. Más de $500.000 → 10%; más de $200.000 → 5%; caso contrario 0%.
-•	Procedimiento dbo.sp_RegistrarVentaCompleta: crea el Comprobante y la Compra, inserta el Detalle_Compra con el precio histórico, descuenta stock, aplica el descuento y registra el método y el monto del pago, todo dentro de una transacción (tema 2).
-1.5 Script de demostración
+
+## 1.2 Ventajas y aplicaciones
+* **Reutilizan** lógica de negocio y reducen código repetido.
+* **Mejoran la mantenibilidad:** una regla se cambia en un solo lugar.
+* **Permiten** dar permisos de ejecución sin dar acceso directo a las tablas (ver tema 4).
+* **Aplicaciones:** registrar una venta completa, calcular descuentos, emitir reportes.
+
+## 1.3 Implementación en SQL Server Express
+Se usan `CREATE FUNCTION` y `CREATE PROCEDURE` (o `CREATE OR ALTER`, disponible desde SQL Server 2016 SP1). Cada uno debe ir en su propio lote, separado con `GO`.
+
+## 1.4 Caso aplicado al sistema
+* **Función `dbo.fn_CalcularDescuentoCliente`:** suma lo comprado históricamente por un cliente. Más de $500.000 → 10%; más de $200.000 → 5%; caso contrario 0%.
+* **Procedimiento `dbo.sp_RegistrarVentaCompleta`:** crea el Comprobante y la Compra, inserta el Detalle_Compra con el precio histórico, descuenta stock, aplica el descuento y registra el método y el monto del pago, todo dentro de una transacción (tema 2).
+
+## 1.5 Script de demostración
+
+```sql
 -- Función de descuento
 CREATE OR ALTER FUNCTION dbo.fn_CalcularDescuentoCliente (@ID_Cliente int)
 RETURNS decimal(5,2)
@@ -108,4 +115,7 @@ BEGIN
     END CATCH
 END;
 GO
-Resultado esperado de la función: Ana (ID 1) → 0.00 y Luis (ID 2) → 10.00, porque acumuló $600.000.
+```
+
+**Resultado esperado de la función:**
+Ana (ID 1) → `0.00` y Luis (ID 2) → `10.00`, porque acumuló `$600.000`.
