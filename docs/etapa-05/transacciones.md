@@ -1,4 +1,3 @@
-[manejo_de_transacciones.md](https://github.com/user-attachments/files/34106005/manejo_de_transacciones.md)
 # 2. Manejo de transacciones
 
 ## 2.1 Definición y objetivo
