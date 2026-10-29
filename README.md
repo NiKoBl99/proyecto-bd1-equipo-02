@@ -58,11 +58,11 @@ proyecto-bd1-equipo-02/
 │   │   ├── informe_ventas.sql
 │   │   └── consulta_avanzada.sql
 │   └── tecnico/
-│       ├── procedimientos/
-│       ├── funciones/
-│       ├── transacciones/
-│       ├── triggers/
-│       ├── seguridad/
-│       └── indices/
+│       ├── funciones.sql
+│       ├── indices.sql
+│       ├── procedimientos.sql
+│       ├── seguridad.sql
+│       ├── transacciones.sql
+│       └── triggers.sql
 └── README.md
 ```
