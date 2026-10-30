@@ -24,9 +24,6 @@ Para medir el rendimiento de las consultas se emplean los siguientes comandos:
 SET STATISTICS TIME ON;
 SET STATISTICS IO ON;
 ```
-
-> **Nota:** También se recomienda activar el **Plan de ejecución real** mediante la combinación de teclas <kbd>Ctrl</kbd> + <kbd>M</kbd> en **SQL Server Management Studio (SSMS)**.
-
 ---
 
 ## 5.4 Caso aplicado al sistema
@@ -84,8 +81,6 @@ FROM VentaHistorica
 WHERE fecha_venta BETWEEN '2023-01-01' AND '2023-03-31';
 GO
 ```
-*Esta consulta permite observar el comportamiento de la tabla sin un índice agrupado. El plan de ejecución puede mostrar un **Table Scan**.*
-
 #### 2. Índice agrupado sobre la fecha
 
 ```sql
@@ -122,8 +117,6 @@ GO
 ---
 
 ### B. Aplicación al modelo del sistema de ventas
-
-> ⚠️ **Importante:** Ejecutar esta carga masiva en una copia de la base de datos o al finalizar las demás pruebas, ya que agrega **200.000 comprobantes** y modifica los acumulados de los clientes.
 
 #### Insertar comprobantes
 
