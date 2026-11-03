@@ -1,4 +1,4 @@
-```sql
+sql
 -- Función de descuento
 CREATE OR ALTER FUNCTION dbo.fn_CalcularDescuentoCliente (@ID_Cliente int)
 RETURNS decimal(5,2)
