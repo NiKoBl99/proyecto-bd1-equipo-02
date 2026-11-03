@@ -43,26 +43,27 @@ proyecto-bd1-equipo-02/
 │   │   ├── informe-ventas.md
 │   │   └── consulta-avanzada.md
 │   └── etapa-05/
-│       ├── procedimientos-funciones.md
-│       ├── transacciones.md
-│       ├── triggers-auditoria.md
-│       ├── seguridad.md
-│       └── indices-optimizacion.md
+│   ├── procedimientos_funciones/
+│   │    ├── investigacion.md
+│   │    ├── scripts.sql
+│   │    └── evidencias/
+│   ├── transacciones/
+│   │    ├── investigacion.md
+│   │    ├── scripts.sql
+│   │    └── evidencias/
+│   └── triggers_auditoria/
+│        ├── investigacion.md
+│        ├── scripts.sql
+│        └── evidencias/
+│    
 ├── sql/
 │   ├── ddl/
 │   │   └── crear_bd.sql
 │   ├── dml/
 │   │   └── datos_prueba.sql
 │   ├── consultas/
-│   │   ├── comprobante_venta.sql
-│   │   ├── informe_ventas.sql
-│   │   └── consulta_avanzada.sql
-│   └── tecnico/
-│       ├── funciones.sql
-│       ├── indices.sql
-│       ├── procedimientos.sql
-│       ├── seguridad.sql
-│       ├── transacciones.sql
-│       └── triggers.sql
+│       ├── comprobante_venta.sql
+│       ├── informe_ventas.sql
+│       └── consulta_avanzada.sql
 └── README.md
 ```
