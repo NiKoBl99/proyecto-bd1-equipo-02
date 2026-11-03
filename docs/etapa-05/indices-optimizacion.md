@@ -1,18 +1,18 @@
-# 5. Optimización de consultas mediante índices
+#  Optimización de consultas mediante índices
 
-## 5.1 Definición y objetivo
+## Definición y objetivo
 Un **índice** es una estructura que permite al motor de base de datos ubicar datos sin recorrer toda la tabla, de manera similar al índice de un libro. El objetivo principal es reducir las lecturas en disco/memoria y los tiempos de respuesta, evitando la operación de **Table Scan** cuando sea posible.
 
 ---
 
-## 5.2 Ventajas y aplicaciones
+##  Ventajas y aplicaciones
 * **Aceleran las búsquedas y los filtros** por fecha, cliente, código o producto.
 * **Reducen las lecturas lógicas** en tablas de gran volumen.
 * **Consideraciones de rendimiento:** Ocupan espacio en disco y pueden penalizar las operaciones de modificación (`INSERT`, `UPDATE` y `DELETE`), debido a que los índices deben mantenerse actualizados automáticamente.
 
 ---
 
-## 5.3 Implementación en SQL Server Express
+## Implementación en SQL Server Express
 Para administrar índices se utilizan las siguientes instrucciones DDL:
 * `CREATE CLUSTERED INDEX`
 * `CREATE NONCLUSTERED INDEX ... INCLUDE (...)`
@@ -26,14 +26,14 @@ SET STATISTICS IO ON;
 ```
 ---
 
-## 5.4 Caso aplicado al sistema
+## Caso aplicado al sistema
 Los informes de ventas (consultas 2 y 3 del proyecto) filtran por la columna `Comprobante.fecha_emision` y unen las tablas `Compra` y `Detalle_Compra`.
 
 Se propone crear un índice por fecha y dos índices adicionales sobre las columnas de unión para mejorar el rendimiento global de las consultas.
 
 ---
 
-## 5.5 Script de demostración
+## Script de demostración
 
 ### A. Caso de la guía: `VentaHistorica` con 1.000.000 de filas
 
@@ -211,7 +211,7 @@ WHERE fecha_emision >= '2026-01-01'
 
 ---
 
-## 5.6 Resultados
+## Resultados
 
 Completar la siguiente tabla con las mediciones reales obtenidas mediante `SET STATISTICS` y el plan de ejecución real. Adjuntar capturas de los planes.
 
