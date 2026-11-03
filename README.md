@@ -43,27 +43,39 @@ proyecto-bd1-equipo-02/
 │   │   ├── informe-ventas.md
 │   │   └── consulta-avanzada.md
 │   └── etapa-05/
-│   ├── procedimientos_funciones/
-│   │    ├── investigacion.md
-│   │    ├── scripts.sql
-│   │    └── evidencias/
-│   ├── transacciones/
-│   │    ├── investigacion.md
-│   │    ├── scripts.sql
-│   │    └── evidencias/
-│   └── triggers_auditoria/
-│        ├── investigacion.md
-│        ├── scripts.sql
-│        └── evidencias/
-│    
+│       ├── procedimientos_funciones/
+│       │   ├── investigacion.md
+│       │   ├── scripts.sql
+│       │   └── evidencias/
+│       ├── transacciones/
+│       │   ├── investigacion.md
+│       │   ├── scripts.sql
+│       │   └── evidencias/
+│       └── triggers_auditoria/
+│       │   ├── investigacion.md
+│       │   ├── scripts.sql
+│       │   └── evidencias/
+│       ├── indices-optimizacion.md
+│       └── seguridad.md
 ├── sql/
 │   ├── ddl/
 │   │   └── crear_bd.sql
 │   ├── dml/
 │   │   └── datos_prueba.sql
-│   ├── consultas/
+│   └── consultas/
 │       ├── comprobante_venta.sql
 │       ├── informe_ventas.sql
 │       └── consulta_avanzada.sql
 └── README.md
 ```
+## 🛠️ Tecnologías Utilizadas
+- **SGBD:** Microsoft SQL Server
+- **Modelado:** ERDPlus / Draw.io
+- **Documentación y Control de Versiones:** Markdown, Git & GitHub
+
+## 🚀 Cómo Ejecutar los Scripts
+1. Clonar el repositorio: `git clone https://github.com/NiKoBl99/proyecto-bd1-equipo-02.git`
+2. Abrir **SQL Server Management Studio (SSMS)**.
+3. Ejecutar los scripts en orden:
+   - `sql/ddl/crear_bd.sql` (Crea la base de datos, tablas y restricciones)
+   - `sql/dml/datos_prueba.sql` (Inserta datos de prueba)
