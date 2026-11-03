@@ -15,10 +15,3 @@ Se usan `CREATE FUNCTION` y `CREATE PROCEDURE`. Cada uno debe ir en su propio lo
 ## Caso aplicado al sistema
 * **Función `dbo.fn_CalcularDescuentoCliente`:** suma lo comprado históricamente por un cliente. Más de $500.000 → 10%; más de $200.000 → 5%; caso contrario 0%.
 * **Procedimiento `dbo.sp_RegistrarVentaCompleta`:** crea el Comprobante y la Compra, inserta el Detalle_Compra con el precio histórico, descuenta stock, aplica el descuento y registra el método y el monto del pago, todo dentro de una transacción.
-
-## Script de demostración
-
-
-```
-**Resultado esperado de la función:**
-Ana (ID 1) → `0.00` y Luis (ID 2) → `10.00`, porque acumuló `$600.000`.
