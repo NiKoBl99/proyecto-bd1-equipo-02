@@ -116,3 +116,5 @@ BEGIN
 END;
 GO
 ```
+**Resultado esperado de la función:**
+Ana (ID 1) → `0.00` y Luis (ID 2) → `10.00`, porque acumuló `$600.000`.
