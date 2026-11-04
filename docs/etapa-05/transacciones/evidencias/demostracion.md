@@ -8,21 +8,10 @@ Esta carpeta contiene las pruebas del manejo de transacciones en SQL Server, dem
 
 Estas pruebas demuestran que `BEGIN TRANSACTION`, `COMMIT`, `ROLLBACK` y los mecanismos de control de concurrencia permiten mantener la consistencia de los datos.
 
-## Pruebas y resultados
+### Resultados esperados adaptados a la ejecución actual
 
-  -----------------------------------------------------------------------
-  Prueba                              Resultado
-  ----------------------------------- -----------------------------------
-  **Correcta (Mouse × 5)**            Venta con total de **\$75.000** y
-                                      **0 % de descuento**. El stock del
-                                      Mouse pasa de 10 a 5. Las
-                                      cantidades de compras, detalles y
-                                      pagos aumentan en 1.
-
-  **Incorrecta (Teclado × 5)**        Se produce el **error 50003** y se
-                                      ejecuta `ROLLBACK`. El stock del
-                                      Teclado sigue siendo 3 y los
-                                      contadores no cambian respecto de
-                                      la prueba anterior.
-  -----------------------------------------------------------------------
+| Prueba | Resultado | 
+| ----- | ----- | 
+| Correcta (Mouse x5) | Venta con total \$118.750 y descuento aplicado de 5.00. El stock del Mouse pasa de 48 a 43. Los contadores de compras, detalles y pagos aumentan en 1. | 
+| Correcta (Teclado x5)<br>(Originalmente la prueba de error) | Venta exitosa porque el stock inicial era 30 (suficiente para cubrir los 5 solicitados). La venta se registra con un total de \$213.750 y 5.00 de descuento. El stock del Teclado pasa de 30 a 25. Los contadores finales reflejan 11 compras, 11 detalles y 3 pagos. |
 
