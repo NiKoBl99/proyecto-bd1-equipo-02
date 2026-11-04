@@ -35,25 +35,6 @@ Si no alcanza, no se registra la venta, ni el detalle, ni el pago, y el
 stock queda intacto.
 
 Esta lógica está implementada en el procedimiento almacenado
-`sp_RegistrarVentaCompleta`.
-
-## Pruebas y resultados
-
-  -----------------------------------------------------------------------
-  Prueba                              Resultado
-  ----------------------------------- -----------------------------------
-  **Correcta (Mouse × 5)**            Venta con total de **\$75.000** y
-                                      **0 % de descuento**. El stock del
-                                      Mouse pasa de 10 a 5. Las
-                                      cantidades de compras, detalles y
-                                      pagos aumentan en 1.
-
-  **Incorrecta (Teclado × 5)**        Se produce el **error 50003** y se
-                                      ejecuta `ROLLBACK`. El stock del
-                                      Teclado sigue siendo 3 y los
-                                      contadores no cambian respecto de
-                                      la prueba anterior.
-  -----------------------------------------------------------------------
 
 ## Conclusión
 
