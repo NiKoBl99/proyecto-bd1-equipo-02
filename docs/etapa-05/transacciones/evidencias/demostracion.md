@@ -26,8 +26,3 @@ Estas pruebas demuestran que `BEGIN TRANSACTION`, `COMMIT`, `ROLLBACK` y los mec
                                       la prueba anterior.
   -----------------------------------------------------------------------
 
-## Conclusión
-
-Esto demuestra la **atomicidad** de las transacciones: si todas las
-operaciones pueden realizarse correctamente, se confirman; si ocurre un
-error, se revierten y la base de datos conserva su estado anterior.
