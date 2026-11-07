@@ -1,43 +1,152 @@
-# Gestión de Biblioteca
-# Trabajo Práctico Integrador - Programación Orientada a Objetos
+# proyecto-bd1-equipo-02
+
+# Proyecto Integrador - Bases de Datos I
+
+
 
 **Universidad Nacional del Nordeste (UNNE)**
+
 **Facultad de Ciencias Exactas y Naturales y Agrimensura (FaCENA)**
+
 **Carrera:** Licenciatura en Sistemas de Información
+
+
 
 ---
 
-## 👥 Equipo
-- Alegre, Geronimo
-- Blanco, Nicolas Gustavo
-- Cabrera, Jorge Sebastian
-- Cardozo Candia, Santiago
-- Fava, Gabriel
+
+
+## 👥 Equipo 02
+
+Aiello Mariano
+Blanco Nicolas Gustavo
+Cardozo Candia Santiago
+Fava Gabriel 
+Gerez Luciano Andres
+
 
 ## 📋 Caso de Estudio
-**Sistema de Gestión de Biblioteca:** Aplicación desarrollada en Java para la administración de préstamos de libros. Permite gestionar el catálogo de títulos y controlar los préstamos según el tipo de socio (Estudiantes y Docentes). Incluye validaciones de cupos, control de fechas de vencimiento, un sistema de recompensas con días de préstamo extra para docentes responsables, y generación de reportes estadísticos mediante colecciones genéricas.
+
+**Empresa de Venta y Servicio de Electrónica:** Sistema de información para la gestión unificada del registro de clientes, flujo de stock de insumos/productos suministrados por proveedores, y administración de órdenes de reparación técnicas.
+
+
 
 ## 📂 Estructura del Repositorio
-El código fuente y su respectiva documentación están organizados en paquetes según el diagrama de clases:
+
+El proyecto está organizado de la siguiente forma:
 
 ```text
-Gestión de Biblioteca/
-├── <<abs>>Socio/
-│   ├── Docente/
-│   │   ├── Docente.jar
-│   │   └── Docente.md
-│   ├── Estudiante/
-│   │   ├── Estudiante.jar
-│   │   └── Estudiante.md
-│   ├── Socio.jar
-│   └── Socio.md
-├── Biblioteca/
-│   ├── Biblioteca.jar
-│   └── Biblioteca.md
-├── Libro/
-│   ├── Libro.jar
-│   └── Libro.md
-├── Prestamo/
-│   ├── Prestamo.jar
-│   └── Prestamo.md
+
+proyecto-bd1-equipo-02/
+
+├── docs/
+
+│   ├── etapa-01/
+
+│   │   ├── descripcion-caso.md
+
+│   │   ├── alcance.md
+
+│   │   ├── reglas-negocio.md
+
+│   │   └── decisiones-diseno.md
+
+│   ├── etapa-02/
+
+│   │   ├── der/
+
+│   │   │   └── der.png
+
+│   │   ├── modelo-relacional.md
+
+│   │   ├── normalizacion.md
+
+│   │   └── decisiones-diseno.md
+
+│   ├── etapa-03/
+
+│   │   ├── implementacion.md
+
+│   │   ├── restricciones-integridad.md
+
+│   │   └── pruebas-validacion.md
+
+│   ├── etapa-04/
+
+│   │   ├── casos-uso.md
+
+│   │   ├── comprobante-venta.md
+
+│   │   ├── informe-ventas.md
+
+│   │   └── consulta-avanzada.md
+
+│   └── etapa-05/
+
+│       ├── procedimientos_funciones/
+
+│       │   ├── investigacion.md
+
+│       │   ├── scripts.sql
+
+│       │   └── evidencias/
+
+│       ├── transacciones/
+
+│       │   ├── investigacion.md
+
+│       │   ├── scripts.sql
+
+│       │   └── evidencias/
+
+│       └── triggers_auditoria/
+
+│       │   ├── investigacion.md
+
+│       │   ├── scripts.sql
+
+│       │   └── evidencias/
+
+│       ├── indices-optimizacion.md
+
+│       └── seguridad.md
+
+├── sql/
+
+│   ├── ddl/
+
+│   │   └── crear_bd.sql
+
+│   ├── dml/
+
+│   │   └── datos_prueba.sql
+
+│   └── consultas/
+
+│       ├── comprobante_venta.sql
+
+│       ├── informe_ventas.sql
+
+│       └── consulta_avanzada.sql
+
 └── README.md
+
+```
+
+## 🛠️ Tecnologías Utilizadas
+
+**SGBD:** Microsoft SQL Server
+**Modelado:** ERDPlus / Draw.io
+**Documentación y Control de Versiones:** Markdown, Git & GitHub
+
+
+## 🚀 Cómo Ejecutar los Scripts
+
+Clonar el repositorio: `git clone https://github.com/NiKoBl99/proyecto-bd1-equipo-02.git`
+2. Abrir **SQL Server Management Studio (SSMS)**.
+
+3. Ejecutar los scripts en orden:
+
+   - `sql/ddl/crear_bd.sql` (Crea la base de datos, tablas y restricciones)
+
+   - `sql/dml/datos_prueba.sql` (Inserta datos de prueba)
