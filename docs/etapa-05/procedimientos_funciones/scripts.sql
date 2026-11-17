@@ -29,8 +29,8 @@ CREATE OR ALTER PROCEDURE dbo.sp_RegistrarVentaCompleta
     @ID_Cliente   int,
     @ID_Producto  int,
     @Cantidad     int,
-    @Tipo_Emision varchar(50) = 'Factura B',
-    @Metodo_Pago  varchar(50) = 'Efectivo'
+    @Tipo_Emision varchar(50),
+    @Metodo_Pago  varchar(50)
 AS
 BEGIN
     SET NOCOUNT ON;
@@ -69,8 +69,8 @@ BEGIN
         SET @ID_Compra = SCOPE_IDENTITY();
 
         -- 2) Detalle con precio histórico
-        INSERT INTO Detalle_Compra(ID_Compra, ID_Producto, Cantidad_Compra, Subtotal, Precio_Unitario)
-        VALUES (@ID_Compra, @ID_Producto, @Cantidad, @Subtotal, @Precio);
+        INSERT INTO Detalle_Compra(ID_Compra, ID_Producto, Cantidad_Compra, Subtotal)
+        VALUES (@ID_Compra, @ID_Producto, @Cantidad, @Subtotal);
 
         -- 3) Stock
         UPDATE Producto
